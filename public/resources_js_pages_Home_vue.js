@@ -112,76 +112,475 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    var that = this;
     aos__WEBPACK_IMPORTED_MODULE_0___default().init();
-    axios.post("/"); // new Splide(".splide-events", {
-    //     perPage: 3,
-    //     rewind: true,
-    //     gap: "20px",
-    //     padding: {
-    //         left: "75px",
-    //         right: "75px",
-    //     },
-    //     breakpoints: {
-    //         768: {
-    //             perPage: 1,
-    //         },
-    //     },
-    // }).mount();
-    // new Splide(".splide-inspiration", {
-    //     perPage: 3,
-    //     rewind: true,
-    //     gap: "20px",
-    //     padding: {
-    //         left: "75px",
-    //         right: "75px",
-    //     },
-    //     breakpoints: {
-    //         768: {
-    //             perPage: 1,
-    //         },
-    //     },
-    // }).mount();
-    // new Splide(".splide-study-guide", {
-    //     perPage: 3,
-    //     rewind: true,
-    //     gap: "20px",
-    //     padding: {
-    //         left: "75px",
-    //         right: "75px",
-    //     },
-    //     breakpoints: {
-    //         768: {
-    //             perPage: 1,
-    //         },
-    //     },
-    // }).mount();
   },
-  data: function data() {
-    return {
-      that: this,
-      successes: {},
-      errors: {},
-      area_id: "",
-      passed: false
-    };
-  },
-  methods: {},
   components: {
-    CustomInput: function CustomInput() {
-      return __webpack_require__.e(/*! import() */ "resources_js_components_CustomInput_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/CustomInput */ "./resources/js/components/CustomInput.vue"));
-    },
-    Footer: function Footer() {
-      return __webpack_require__.e(/*! import() */ "resources_js_layouts_Footer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../layouts/Footer.vue */ "./resources/js/layouts/Footer.vue"));
+    Search: function Search() {
+      return __webpack_require__.e(/*! import() */ "resources_js_pages_Search_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./Search.vue */ "./resources/js/pages/Search.vue"));
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/functions/validator.js":
+/*!*********************************************!*\
+  !*** ./resources/js/functions/validator.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "validate": () => (/* binding */ validate),
+/* harmony export */   "myValidator": () => (/* binding */ myValidator),
+/* harmony export */   "validateAll": () => (/* binding */ validateAll)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./resources/js/functions/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var validate = function validate(field, value, that) {
+  var hasError = false;
+
+  if (field.validation == undefined) {
+    return true;
+  }
+
+  field.validation.every(function (validate) {
+    var paramIndex = validate.indexOf(":");
+    var validateString = validate;
+    var localValue = value; // if (field.type == "react-draft") {
+    //     localValue =
+    //         draftToHtml(convertToRaw(value.getCurrentContent())).trim() ==
+    //         "<p></p>"
+    //             ? ""
+    //             : draftToHtml(convertToRaw(value.getCurrentContent()))
+    //                   .trim()
+    //                   .replace(/(<([^>]+)>)/gi, "");
+    // }
+
+    if (paramIndex >= 0) {
+      validateString = validate.substring(0, paramIndex);
+      var parameter = validate.substring(paramIndex + 1);
+    }
+
+    switch (validateString) {
+      case "required":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: (0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(localValue),
+            errorText: field.messages ? field.messages.required ? field.messages.required : field.labelText + " is required." : field.labelText + " is required."
+          }], that);
+          break;
+        }
+
+      case "max":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue > parseInt(parameter),
+            errorText: field.messages ? field.messages.max ? field.messages.max : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "min":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue < parseInt(parameter),
+            errorText: field.messages ? field.messages.min ? field.messages.min : field.labelText + " should not be lesser than " + parameter + "." : field.labelText + " should not be lesser than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "max_len":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue.length > parseInt(parameter),
+            errorText: field.messages ? field.messages.max_len ? field.messages.max_len : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "min_len":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue.length < parseInt(parameter),
+            errorText: field.messages ? field.messages.min_len ? field.messages.min_len : field.labelText + " should not be less than " + parameter + "." : field.labelText + " should not be less than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "number":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: isNaN(localValue),
+            errorText: field.messages && field.messages.min_len ? field.messages.min_len : field.labelText + " should all be a number."
+          }], that);
+          break;
+        }
+
+      case "s_equal":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: that[field.name] != that[parameter],
+            errorText: field.messages && field.messages.s_equal ? field.messages.s_equal : field.labelText + " should be equal to ".concat(that.fieldsValidation[parameter].labelText, ".")
+          }], that);
+          break;
+        }
+
+      case "email":
+        {
+          var re = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
+          hasError = myValidator(field.name, [{
+            errorTrap: !re.test(that[field.name]),
+            errorText: field.messages && field.messages.email ? field.messages.email : field.labelText + " must be a valid email."
+          }], that);
+          break;
+        }
+
+      case "success":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: false,
+            errorText: ""
+          }], that);
+          break;
+        }
+    }
+
+    if (hasError) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  return hasError;
+};
+var myValidator = function myValidator(name, conditions, that) {
+  var state = {};
+  conditions.forEach(function (condition) {
+    if (condition.errorTrap) {
+      state = {
+        error: _defineProperty({}, name, condition.errorText)
+      };
+    }
+  });
+
+  if (!(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state)) {
+    var successes = that.successes;
+    delete successes[name];
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread(_objectSpread({}, that.errors), state.error));
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread({}, successes));
+  } else {
+    var errors = that.errors;
+    delete errors[name];
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread({}, errors));
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread(_objectSpread({}, that.successes), {}, _defineProperty({}, name, true)));
+  }
+
+  return !(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state);
+};
+var validateAll = function validateAll(fields, that) {
+  var values = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var errors = [];
+  var additionalValidation = that.additionalValidation;
+
+  if ((0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(additionalValidation)) {
+    additionalValidation = {};
+  }
+
+  Object.keys(fields).map(function (fieldName) {
+    if (fields[fieldName].validation != undefined && validate(additionalValidation[fieldName] ? _objectSpread(_objectSpread({}, fields[fieldName]), {}, {
+      validation: additionalValidation[fieldName]
+    }) : fields[fieldName], values[fieldName] != undefined ? values[fieldName] : that[fieldName], that)) errors.push(true);
+  });
+  return errors;
+};
 
 /***/ }),
 
@@ -273,55 +672,306 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "section max-w-none mt-4" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", [
-      _c("h2", { staticClass: "p-0 m-0" }, [
-        _vm._v("Cities you should visit.")
-      ]),
-      _vm._v(" "),
+    _c("div", { staticClass: "section max-w-none pb-8" }, [
       _c(
         "div",
-        { staticClass: "grid gap-7 grid-cols-3" },
+        { staticClass: "bg-white p-4 rounded-lg mb-2" },
         [
-          _c(
-            "router-link",
-            { staticClass: "tokyo text-", attrs: { to: "/places/tokyo" } },
-            [
-              _c("div", { staticClass: "card text-center shadow-2xl" }, [
-                _c("div", { staticClass: "p-6" }, [
-                  _c("img", {
-                    staticClass: "rounded-xl object-cover max-w-full",
-                    attrs: { src: "/images/tokyo.jpg" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body pt-0" }, [
-                  _c("h2", { staticClass: "card-title" }, [_vm._v("Tokyo")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                            Tokyo (東京, Tōkyō) is Japan's capital and the\n                            world's most populous metropolis. It is also one\n                            of Japan's 47 prefectures, consisting of 23\n                            central city wards and multiple cities, towns\n                            and villages west of the city center.\n                        "
-                    )
-                  ])
-                ])
-              ])
-            ]
-          ),
+          _c("p", { staticClass: "font-bold mt-0" }, [_vm._v("Quick Search")]),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _vm._m(5)
+          _c("Search")
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _c("h2", { staticClass: "p-0 m-0", attrs: { "data-aos": "fade-up" } }, [
+          _vm._v("\n                Cities you should visit:\n            ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "\n                    grid grid-cols-1\n                    gap-2\n                    xl:grid-cols-2 xl:gap-4\n                    min-xl:grid-cols-3 min-xl:gap-8\n                "
+          },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "tokyo text-black",
+                attrs: { to: "/places/tokyo", "data-aos": "fade-up" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                            card\n                            min-2xl:card-side\n                            text-center\n                            shadow-xl\n                            h-full\n                        "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "\n                                p-6\n                                flex flex-wrap\n                                content-center\n                                justify-center justify\n                                center\n                            "
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
+                          attrs: { src: "/images/tokyo.jpg" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body pt-0" }, [
+                      _c("h2", { staticClass: "card-title" }, [
+                        _vm._v("Tokyo")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                Is Japan's capital and the world's most\n                                populous metropolis. It is also one of\n                                Japan's 47 prefectures, consisting of 23\n                                central city wards and multiple cities,\n                                towns and villages west of the city center.\n                            "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "yokohama text-black",
+                attrs: { to: "/places/yokohama", "data-aos": "fade-up" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                            card\n                            min-2xl:card-side\n                            text-center\n                            shadow-xl\n                            h-full\n                        "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "\n                                p-6\n                                flex flex-wrap\n                                content-center\n                                justify-center\n                            "
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
+                          attrs: { src: "/images/yokohama.jpg" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body pt-0" }, [
+                      _c("h2", { staticClass: "card-title" }, [
+                        _vm._v("Yokohama")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                Is the second-largest city in Japan by\n                                population and the most populous\n                                municipality of Japan. It is the capital\n                                city and the most populous city in Kanagawa\n                                Prefecture, with a 2020 population of 3.8\n                                million.\n                            "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "kyoto text-black",
+                attrs: { to: "/places/kyoto", "data-aos": "fade-up" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                            card\n                            min-2xl:card-side\n                            text-center\n                            shadow-xl\n                            h-full\n                        "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "\n                                p-6\n                                flex flex-wrap\n                                content-center\n                                justify-center\n                            "
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
+                          attrs: { src: "/images/kyoto.jpg" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body pt-0" }, [
+                      _c("h2", { staticClass: "card-title" }, [
+                        _vm._v("Kyoto")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                Officially Kyoto City (京都市, Kyōto-shi,\n                                [kʲoːtoꜜɕi]), is the capital city of Kyoto\n                                Prefecture in Japan. Located in the Kansai\n                                region on the island of Honshu, Kyoto forms\n                                a part of the Keihanshin metropolitan area\n                                along with Osaka and Kobe.\n                            "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "osaka text-black",
+                attrs: { to: "/places/osaka", "data-aos": "fade-up" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                            card\n                            min-2xl:card-side\n                            text-center\n                            shadow-xl\n                            h-full\n                        "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "\n                                p-6\n                                flex flex-wrap\n                                content-center\n                                justify-center\n                            "
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
+                          attrs: { src: "/images/osaka.jpg" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body pt-0" }, [
+                      _c("h2", { staticClass: "card-title" }, [
+                        _vm._v("Osaka")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                Is a designated city in the Kansai region of\n                                Honshu in Japan. It is the capital and the\n                                most populous city in Osaka Prefecture, and\n                                the third most populous city in Japan,\n                                following Tokyo and Yokohama (both located\n                                in the Greater Tokyo Area and the Kantō\n                                region).\n                            "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "sapporo text-black",
+                attrs: { to: "/places/sapporo", "data-aos": "fade-up" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                            card\n                            min-2xl:card-side\n                            text-center\n                            shadow-xl\n                            h-full\n                        "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "\n                                p-6\n                                flex flex-wrap\n                                content-center\n                                justify-center\n                            "
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
+                          attrs: { src: "/images/sapporo.jpg" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body pt-0" }, [
+                      _c("h2", { staticClass: "card-title" }, [
+                        _vm._v("Sapporo")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                It is the largest city north of Tokyo, and\n                                the largest city on Hokkaido, the\n                                northernmost main island of the country. It\n                                is the capital city of Hokkaido Prefecture\n                                and Ishikari Subprefecture. Sapporo lies in\n                                the southwest of Hokkaido, within the\n                                alluvial fan of the Toyohira River, which is\n                                a tributary stream of the Ishikari.\n                            "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "nagoya text-black",
+                attrs: { to: "/places/nagoya", "data-aos": "fade-up" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                            card\n                            min-2xl:card-side\n                            text-center\n                            shadow-xl\n                            h-full\n                        "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "\n                                p-6\n                                flex flex-wrap\n                                content-center\n                                justify-center\n                            "
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
+                          attrs: { src: "/images/nagoya.jpg" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body pt-0" }, [
+                      _c("h2", { staticClass: "card-title" }, [
+                        _vm._v("Nagoya")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                the fourth-most populous city and third most\n                                populous urban area in Japan, with a\n                                population of 2.3 million in 2020. Located\n                                on the Pacific coast on central Honshu, it\n                                is the capital and the most populous city of\n                                Aichi Prefecture, and is one of Japan's\n                                major ports along with those of Tokyo,\n                                Osaka, Kobe, Yokohama, and Chiba.\n                            "
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
@@ -334,85 +984,46 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "\n            flex\n            items-center\n            w-full\n            px-4\n            py-10\n            bg-cover bg-center\n            card\n            bg-base-200\n            mb-3\n        ",
-        staticStyle: { "background-image": "url('/images/background.webp')" }
+          "\n            flex\n            items-center\n            w-full\n            px-4\n            pt-20\n            pb-10\n            bg-cover bg-center\n            card\n            bg-base-200\n            mb-3\n        ",
+        staticStyle: { "background-image": "url('/images/background.jpg')" },
+        attrs: { "data-aos": "fade-up" }
       },
       [
         _c(
           "div",
           {
-            staticClass: "card glass min-lg:card-side text-black content-center"
+            staticClass:
+              "\n                card\n                glass\n                min-lg:card-side\n                text-white\n                content-center\n                justify-center\n            "
           },
           [
             _c("div", { staticClass: "p-6 lg:pb-0 flex justify-center" }, [
               _c("img", {
                 staticClass:
-                  "\n                        rounded-lg\n                        shadow-lg\n                        max-h-44\n                        lg:max-h-32\n                        w-auto\n                        h-auto\n                    ",
+                  "\n                        rounded-lg\n                        shadow-xl\n                        max-h-44\n                        lg:max-h-32\n                        w-auto\n                        h-auto\n                    ",
                 attrs: { src: "/images/flag.png" }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body p-6" }, [
-              _c("h1", { staticClass: "m-0 p-0 mb-2" }, [_vm._v("Japan")]),
-              _vm._v(" "),
-              _c("h2", { staticClass: "m-0 p-0 mb-2" }, [
-                _vm._v(
-                  "\n                    Japan is truly timeless, a place where ancient\n                    traditions are fused with modern life as if it were the\n                    most natural thing in the world.\n                "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-actions mt-0" }, [
-                _c("button", { staticClass: "btn btn-primary rounded-full" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "\n                    card-body\n                    p-6\n                    flex flex-wrap\n                    content-center\n                    justify-center\n                "
+              },
+              [
+                _c("h1", { staticClass: "m-0 p-0 mb-2" }, [_vm._v("Japan")]),
+                _vm._v(" "),
+                _c("h2", { staticClass: "m-0 p-0 mb-2" }, [
                   _vm._v(
-                    "\n                        Get Started\n                    "
+                    "\n                    Japan is truly timeless, a place where ancient\n                    traditions are fused with modern life as if it were the\n                    most natural thing in the world.\n                "
                   )
                 ])
-              ])
-            ])
+              ]
+            )
           ]
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "yokohama" }, [
-      _c("h3", { staticClass: "p-0 m-0" }, [_vm._v("Yokohama")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "kyoto" }, [
-      _c("h3", { staticClass: "p-0 m-0" }, [_vm._v("Kyoto")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "osaka" }, [
-      _c("h3", { staticClass: "p-0 m-0" }, [_vm._v("Osaka")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sapporo" }, [
-      _c("h3", { staticClass: "p-0 m-0" }, [_vm._v("Sapporo")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "Nagoya" }, [
-      _c("h3", { staticClass: "p-0 m-0" }, [_vm._v("Nagoya")])
-    ])
   }
 ]
 render._withStripped = true

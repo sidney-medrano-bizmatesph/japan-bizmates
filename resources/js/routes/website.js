@@ -1,1 +1,1 @@
-export default " PLE-REAP";
+export default " Japan Guide";

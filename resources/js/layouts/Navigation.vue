@@ -25,9 +25,17 @@
             </div>
             <div class="flex items-center">
                 <div class="flex justify-between bg-transparent xl:hidden">
-                    <router-link to="/home">
-                        <span class="nav-link"> <span>Home</span></span>
-                    </router-link>
+                    <template v-for="(guestRoute, key) in guestRoutes">
+                        <router-link
+                            v-if="!guestRoute.hidden"
+                            :key="`guest-route-key-${key}`"
+                            :to="guestRoute.path"
+                        >
+                            <span class="nav-link">
+                                <span>{{ guestRoute.title }}</span></span
+                            >
+                        </router-link></template
+                    >
                 </div>
                 <button
                     class="
@@ -71,11 +79,11 @@
                     "
                 >
                     <img
-                        :src="`/storage/webCMS/images/${general.round_logo}`"
+                        src="/images/logo.png"
                         alt="Logo"
                         class="h-8 rounded"
                     />
-                    <p class="ml-4 font-bold">
+                    <p class="ml-4 font-bold text-black">
                         {{
                             !isEmpty($route.meta.topBar)
                                 ? $route.meta.topBar
@@ -151,7 +159,6 @@
             <transition name="fade" mode="out-in"
                 ><router-view></router-view>
             </transition>
-            <!-- <Footer></Footer> -->
         </div>
     </div>
 </template>
@@ -167,15 +174,10 @@ export default {
         return {
             isOpen: false,
             guestRoutes,
-            hostname: window.location.hostname,
-            launched: true,
         };
     },
-    computed: {
-        ...mapState(["auth", "general"]),
-    },
+    computed: {},
     methods: {
-        ...mapActions(["logoutUser"]),
         isEmpty,
         drawer() {
             this.isOpen = !this.isOpen;
@@ -194,14 +196,7 @@ export default {
         },
     },
     mounted() {},
-    components: {
-        Footer: () => import("./Footer.vue"),
-    },
+    components: {},
 };
 </script>
 
-<style scoped>
-.padding-top-63px {
-    padding-top: 63px;
-}
-</style>

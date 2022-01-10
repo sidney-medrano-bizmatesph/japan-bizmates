@@ -9,11 +9,12 @@
         <label
             :class="{
                 'block mb-2 text-sm font-bold text-gray-700': true,
-                [inputData.field.labelClass]:
-                    inputData.field.labelClass != undefined,
+
                 'text-red-500': error && error != '',
                 // 'text-gray-500': success && !(error && error != ''),
                 'text-gray-400': inputData.disabled,
+                [inputData.field.labelClass]:
+                    inputData.field.labelClass != undefined,
             }"
             :for="
                 inputData.field.type == 'tumbowyg' ? '' : inputData.field.name
@@ -206,7 +207,11 @@
         </template>
         <span
             v-if="inputData.field.helperText"
-            :class="`text-gray-500 text-sm block`"
+            :class="
+                inputData.field.helperTextClassOverride
+                    ? inputData.field.helperTextClassOverride
+                    : `text-gray-500 text-sm block`
+            "
             >{{ inputData.field.helperText }}</span
         >
         <span

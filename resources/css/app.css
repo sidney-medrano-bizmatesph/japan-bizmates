@@ -51,18 +51,40 @@
         U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
         U+2215, U+FEFF, U+FFFD;
 }
-/* @tailwind base; */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 @layer components {
-/*     
-    .section {
-        @apply lg:mx-4 mx-16 mt-5;
-    } */
 
+    a, a:hover, a:focus, a:active {
+        text-decoration: none;
+        color: inherit;
+   }
+
+   .link{
+       @apply text-blue-500 hover:underline cursor-pointer;
+   }
+
+    textarea, input { outline: none; 
+                    -webkit-appearance: none;
+                    border-style: solid;
+                }
+    input:focus, textarea:focus, select:focus{
+        outline: none;
+        -webkit-appearance: none;
+        border-style: solid;
+
+    }
     .btn-own {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
         @apply border rounded-md px-4 py-2 my-2 mr-2 transition duration-300 ease-in-out select-none focus:outline-none focus:shadow focus:ring-blue-200 focus:ring-4;
     }
     .btn-own:disabled {
@@ -105,11 +127,11 @@
     }
 
     .section {
-        @apply min-xl:px-16 px-6
+        @apply min-xl:px-16 px-6;
     }
-    /* lg:px-6 px-16 */
+    /* lg:px-6 px-16 */ 
     .nav-bar {
-        @apply flex fixed w-full items-center justify-between  h-16 bg-blue-500 text-white z-10 ease-in-out transition-all duration-300;
+        @apply flex fixed w-full items-center min-xl:px-16 px-6 justify-between  h-16 bg-blue-500 text-white z-10 ease-in-out transition-all duration-300 bg-opacity-75;
         z-index: 999;
     }
 
@@ -122,7 +144,7 @@
     }
 
     .nav-link{ 
-        @apply flex items-center p-3 font-medium mr-2 text-center bg-transparent rounded-full text-white hover:text-yellow-200 focus:outline-none focus:text-yellow-200 transition-all
+        @apply flex items-center p-3 font-medium text-center bg-transparent rounded-full text-white hover:text-yellow-200 focus:outline-none focus:text-yellow-200 hover:bg-gray-200 hover:bg-opacity-25 transition-all
     }
     .order-link {
         @apply text-blue-500
@@ -146,19 +168,13 @@
     .select2-selection {
         @apply mr-4;
     }
-    /* .loader {
-        border-top-color: rgba(79, 70, 229, 1);
-        -webkit-animation: spinner 1.5s linear infinite;
-        animation: spinner 1.5s linear infinite;
-    }
-    .loader-default-class {
-        @apply ease-linear rounded-full border-8 border-t-8 border-gray-200;
-    } */
+
+
 
     .page-content {
-        @apply ease-in-out transition-all duration-300;
-        height: 100vh;      
-        padding-top: 64px
+        @apply ease-in-out transition-all duration-300 bg-gray-100;
+        min-height: 100vh;      
+        /* padding-top: 64px */
     }
     
     .table-own {
@@ -181,10 +197,14 @@
 }
 
 body * {
+    @apply box-border ;
     font-family: "Proxima Nova";
+
 }
 
-
+/* body {
+    @apply bg-gray-100;
+} */
 
 
 .fade-enter-active,
@@ -210,31 +230,42 @@ body * {
     padding-top: 5.5px;
     padding-bottom: 5.5px;
 }
-
-.loader {
-    border-top-color: #3498db !important;
-    -webkit-animation: spinner 1.5s linear infinite;
-    animation: spinner 1.5s linear infinite;
-}
-
-@-webkit-keyframes spinner {
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: rgba(59, 130, 246, 1) transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
     0% {
-        -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
-}
-
-@keyframes spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
+  }
+  
 .router-link-exact-active>span {
     background-color: rgb(0, 47, 255);
     color: white;

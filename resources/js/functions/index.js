@@ -98,7 +98,7 @@ export const loader = (title = "Loading.") => {
         title: title,
         html: `
             <center>
-                <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-48 w-48"></div>
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             </center>
 `,
         allowOutsideClick: false,

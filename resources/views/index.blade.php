@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="referrer" content="no-referrer"/>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>PLE-REAP</title>
 
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="/css/spotlight.min.css">
 
 </head>
-<body class="h-full m-0">
+<body class="m-0">
   
   <div id="app" >
     <mainlayout ref="main"></mainlayout>

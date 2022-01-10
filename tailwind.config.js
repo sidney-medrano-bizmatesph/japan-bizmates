@@ -1,5 +1,5 @@
 module.exports = {
-  // important: true,
+  important: true,
   purge: [
     './resources/**/*.blade.php',
     './resources/**/*.js',
@@ -51,8 +51,8 @@ module.exports = {
     themes: [
       {
         'mytheme': {
-          'primary': '#052683',
-          'primary-focus': '#001657',
+          'primary': '#0049db',
+          'primary-focus': '#003399',
           'primary-content': '#ffffff',
           'secondary': '#f000b8',
           'secondary-focus': '#bd0091',
@@ -70,7 +70,7 @@ module.exports = {
           'info': '#2094f3',
           'success': '#009485',
           'warning': '#ff9900',
-          'error': '#69181c',
+          'error': '#ff5724',
         },
       },
     ],

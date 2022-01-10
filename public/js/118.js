@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[118],{9118:(t,e,l)=>{"use strict";l.r(e),l.d(e,{default:()=>n});const s={};const n=(0,l(1900).Z)(s,(function(){var t=this,e=t.$createElement,l=t._self._c||e;return l("div",{},[l("div",{staticClass:"mb-4"},[t._t("form")],2),t._v(" "),l("div",{},[t._t("table")],2)])}),[],!1,null,null,null).exports}}]);

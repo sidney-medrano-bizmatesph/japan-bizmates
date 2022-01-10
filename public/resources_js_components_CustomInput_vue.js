@@ -237,6 +237,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -449,12 +454,14 @@ var render = function() {
             {
               class:
                 ((_obj$1 = {
-                  "block mb-2 text-sm font-bold text-gray-700": true
+                  "block mb-2 text-sm font-bold text-gray-700": true,
+
+                  "text-red-500": _vm.error && _vm.error != "",
+                  // 'text-gray-500': success && !(error && error != ''),
+                  "text-gray-400": _vm.inputData.disabled
                 }),
                 (_obj$1[_vm.inputData.field.labelClass] =
                   _vm.inputData.field.labelClass != undefined),
-                (_obj$1["text-red-500"] = _vm.error && _vm.error != ""),
-                (_obj$1["text-gray-400"] = _vm.inputData.disabled),
                 _obj$1),
               attrs: {
                 for:
@@ -910,9 +917,15 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.inputData.field.helperText
-        ? _c("span", { class: "text-gray-500 text-sm block" }, [
-            _vm._v(_vm._s(_vm.inputData.field.helperText))
-          ])
+        ? _c(
+            "span",
+            {
+              class: _vm.inputData.field.helperTextClassOverride
+                ? _vm.inputData.field.helperTextClassOverride
+                : "text-gray-500 text-sm block"
+            },
+            [_vm._v(_vm._s(_vm.inputData.field.helperText))]
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.error != "" && _vm.error
