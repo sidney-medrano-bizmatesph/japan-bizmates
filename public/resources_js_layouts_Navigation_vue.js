@@ -181,6 +181,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -848,19 +850,21 @@ var render = function() {
                     attrs: { src: "/images/logo.png", alt: "Logo" }
                   }),
                   _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      class: {
-                        "ml-2 font-bold transition-all ease-in-out duration-300 text-white text-lg": true
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    More Fun in Japan\n                "
-                      )
-                    ]
-                  )
+                  _c("router-link", { attrs: { to: "/" } }, [
+                    _c(
+                      "p",
+                      {
+                        class: {
+                          "ml-2 font-bold transition-all ease-in-out duration-300 text-white text-lg": true
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Japan guide\n                    "
+                        )
+                      ]
+                    )
+                  ])
                 ]
               : _vm._e()
           ],

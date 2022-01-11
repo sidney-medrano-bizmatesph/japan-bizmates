@@ -76,7 +76,10 @@
                     <div class="card-body p-6 pt-4">
                         <h2 class="card-title mb-0 text-blue-600">
                             <router-link
-                                :to="`/places/${$route.params.place}/${place.fsq_id}`"
+                                :to="{
+                                    path: `${$route.path}/${place.fsq_id}`,
+                                    query: $route.query,
+                                }"
                                 >{{ place_key + 1 }}.
                                 {{ place.name }}</router-link
                             >

@@ -14,13 +14,15 @@
                             'h-8 transition-all ease-in-out duration-300 rounded': true,
                         }"
                     />
-                    <p
-                        :class="{
-                            'ml-2 font-bold transition-all ease-in-out duration-300 text-white text-lg': true,
-                        }"
-                    >
-                        More Fun in Japan
-                    </p>
+                    <router-link to="/">
+                        <p
+                            :class="{
+                                'ml-2 font-bold transition-all ease-in-out duration-300 text-white text-lg': true,
+                            }"
+                        >
+                            Japan guide
+                        </p>
+                    </router-link>
                 </template>
             </div>
             <div class="flex items-center">

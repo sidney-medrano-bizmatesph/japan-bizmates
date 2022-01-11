@@ -40,10 +40,19 @@ class PlacesController extends Controller
     }
 
     public function get(Request $request){
-        return Http::withHeaders([
+        $place_details = Http::withHeaders([
                             'Accept' => 'application/json',
                             'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
-                        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}?fields=name%2Clocation%2Ccategories%2Crelated_places%2Cdescription%2Crating%2Cphotos%2Ctips%2Ctel%2Cgeocodes%2Chours%2Cemail%2Csocial_media%2Cmenu");
+                        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}?fields=name%2Clocation%2Ccategories%2Crelated_places%2Cdescription%2Crating%2Ctel%2Cgeocodes%2Chours%2Cemail%2Csocial_media%2Cmenu%2Cstats%2Cwebsite");
+        $photos = Http::withHeaders([
+                            'Accept' => 'application/json',
+                            'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
+                        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}/photos?limit=50&sort=NEWEST");
+        $tips = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
+        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}/tips?limit=50&sort=NEWEST");
+        return ["place_details"=>$place_details->json(), "photos"=>$photos->json(), "tips"=>$tips->json()];
     }
 
     public function getWeather(Request $request){

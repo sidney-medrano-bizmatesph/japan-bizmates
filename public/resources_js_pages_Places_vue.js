@@ -162,6 +162,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -633,11 +636,10 @@ var render = function() {
                           "router-link",
                           {
                             attrs: {
-                              to:
-                                "/places/" +
-                                _vm.$route.params.place +
-                                "/" +
-                                place.fsq_id
+                              to: {
+                                path: _vm.$route.path + "/" + place.fsq_id,
+                                query: _vm.$route.query
+                              }
                             }
                           },
                           [
