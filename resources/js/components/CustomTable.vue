@@ -316,7 +316,6 @@ export default {
         return { customFilterFields };
     },
     components: {
-        CustomButton: () => import("../components/CustomButton"),
     },
     computed: {
         nonHiddenFields: function () {

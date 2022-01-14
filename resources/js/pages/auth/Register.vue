@@ -70,7 +70,6 @@ export default {
     },
     components: {
         CustomInput: () => import("../../components/CustomInput"),
-        CustomButton: () => import("../../components/CustomButton"),
     },
     mounted() {
         // loader("Loading");

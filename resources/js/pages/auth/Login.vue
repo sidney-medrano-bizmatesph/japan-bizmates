@@ -4,7 +4,8 @@
             flex
             items-center
             justify-center
-            min-md:w-2/3 min-xl:w-1/2
+            min-md:w-2/3
+            min-xl:w-1/2
             md:w-full
             p-6
             m-auto
@@ -85,7 +86,6 @@ export default {
     },
     components: {
         CustomInput: () => import("../../components/CustomInput"),
-        CustomButton: () => import("../../components/CustomButton"),
     },
     mounted() {
         // loader("Loading");

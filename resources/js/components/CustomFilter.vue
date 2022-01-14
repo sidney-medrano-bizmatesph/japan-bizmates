@@ -157,7 +157,6 @@ export default {
     },
     components: {
         CustomInput: () => import("./CustomInput"),
-        CustomButton: () => import("./CustomButton"),
     },
 };
 </script>
