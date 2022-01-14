@@ -29,6 +29,7 @@
                 <div class="p-6 lg:pb-0 flex justify-center">
                     <img
                         src="/images/flag.png"
+                        alt="Flag of Japan"
                         class="
                             rounded-lg
                             shadow-xl
@@ -99,6 +100,7 @@
                             >
                                 <img
                                     src="/images/tokyo.jpg"
+                                    alt="Sample photo of Tokyo"
                                     class="
                                         rounded-xl
                                         object-cover
@@ -143,6 +145,7 @@
                             >
                                 <img
                                     src="/images/yokohama.jpg"
+                                    alt="Sample photo of Yokohama"
                                     class="
                                         rounded-xl
                                         object-cover
@@ -188,6 +191,7 @@
                             >
                                 <img
                                     src="/images/kyoto.jpg"
+                                    alt="Sample photo of Kyoto"
                                     class="
                                         rounded-xl
                                         object-cover
@@ -233,6 +237,7 @@
                             >
                                 <img
                                     src="/images/osaka.jpg"
+                                    alt="Sample photo of Osaka."
                                     class="
                                         rounded-xl
                                         object-cover
@@ -279,6 +284,7 @@
                             >
                                 <img
                                     src="/images/sapporo.jpg"
+                                    alt="Sample photo of Sapporo."
                                     class="
                                         rounded-xl
                                         object-cover
@@ -326,6 +332,7 @@
                             >
                                 <img
                                     src="/images/nagoya.jpg"
+                                    alt="Sample photo of Nagoya."
                                     class="
                                         rounded-xl
                                         object-cover
@@ -356,9 +363,7 @@
 
 <script>
 import AOS from "aos";
-import Splide from "@splidejs/splide";
-import { validateAll } from "../functions/validator";
-import { commonCatchBlock } from "../functions";
+
 export default {
     mounted() {
         AOS.init();
@@ -368,9 +373,3 @@ export default {
     },
 };
 </script>
-
-<style >
-</style>
-
-<style scoped>
-</style>

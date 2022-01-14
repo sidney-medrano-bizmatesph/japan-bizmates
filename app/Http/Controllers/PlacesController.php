@@ -18,49 +18,63 @@ class PlacesController extends Controller
 
     public function all(Request $request)
     {
+        $foursquare_key = env("FOURSQUARE_KEY");
         $query_string='';
         $radius='';
-        if(isset($request->query_string) && $request->query_string != ''){
+
+        if (
+            isset($request->query_string) 
+            && $request->query_string != ''
+        ) {
             $query_string = "&query='" . $request->query_string . "'";
         }
 
-        if(isset($request->radius) && $request->radius != ''){
+        if (
+            isset($request->radius) 
+            && $request->radius != ''
+        ) {
             $radius = "&radius=$request->radius";
         }
 
-        
-
         $ll = $this->lls[$request->place];
+
         $response = Http::withHeaders([
-                                        'Accept' => 'application/json',
-                                        'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
-                                    ])->get("https://api.foursquare.com/v3/places/search?fields=fsq_id%2Cname%2Clocation%2Ccategories%2Crelated_places%2Cdescription%2Crating%2Cphotos%2Ctips%2Ctel%2Cgeocodes&ll={$ll}&sort=RATING&limit=50$query_string$radius");
+            'Accept' => 'application/json',
+            'Authorization' => $foursquare_key
+        ])->get("https://api.foursquare.com/v3/places/search?fields=fsq_id%2Cname%2Clocation%2Ccategories%2Crelated_places%2Cdescription%2Crating%2Cphotos%2Ctips%2Ctel%2Cgeocodes&ll={$ll}&sort=RATING&limit=50$query_string$radius");
         
         return $response;
     }
 
     public function get(Request $request){
+        $foursquare_key = env("FOURSQUARE_KEY");
+
         $place_details = Http::withHeaders([
-                            'Accept' => 'application/json',
-                            'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
-                        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}?fields=name%2Clocation%2Ccategories%2Crelated_places%2Cdescription%2Crating%2Ctel%2Cgeocodes%2Chours%2Cemail%2Csocial_media%2Cmenu%2Cstats%2Cwebsite");
+            'Accept' => 'application/json',
+            'Authorization' => $foursquare_key
+        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}?fields=name%2Clocation%2Ccategories%2Crelated_places%2Cdescription%2Crating%2Ctel%2Cgeocodes%2Chours%2Cemail%2Csocial_media%2Cmenu%2Cstats%2Cwebsite");
+        
         $photos = Http::withHeaders([
-                            'Accept' => 'application/json',
-                            'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
-                        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}/photos?limit=50&sort=NEWEST");
+            'Accept' => 'application/json',
+            'Authorization' => $foursquare_key
+        ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}/photos?limit=50&sort=NEWEST");
+        
         $tips = Http::withHeaders([
             'Accept' => 'application/json',
-            'Authorization' => 'fsq3kKYQ3ogsM2CzV/nWJAObBbIDQHK95c/V00UVLz+4yto='
+            'Authorization' => $foursquare_key
         ])->get("https://api.foursquare.com/v3/places/{$request->fsq_id}/tips?limit=50&sort=NEWEST");
+
         return ["place_details"=>$place_details->json(), "photos"=>$photos->json(), "tips"=>$tips->json()];
     }
 
     public function getWeather(Request $request){
+        $openweather_key = env("OPENWEATHER_KEY");
+
         $ll = $this->lls[$request->place];
         $ll_split = explode(",",$ll);
         $lat = $ll_split[0];
         $lon = $ll_split[1];
 
-        return Http::get("api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=e2de47d7ea564575cde66b19a66f808c");
+        return Http::get("api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$openweather_key");
     }
 }

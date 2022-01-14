@@ -35,11 +35,11 @@ export default {
                 .post("/login", data.userData)
                 .then(res => {
                     const { token, user } = res.data;
-                    localStorage.setItem("payroll_spa_auth", res.data.token);
+                    localStorage.setItem("bizmates_auth", res.data.token);
 
                     if (user.acc_type == 0) {
                         localStorage.setItem(
-                            "payroll_spa_admin_auth",
+                            "bizmates_admin_auth",
                             res.data.token
                         );
                     }
@@ -65,8 +65,8 @@ export default {
                 Swal.close();
                 setAuthToken(false);
                 commit("SET_CURRENT_USER", {});
-                localStorage.removeItem("payroll_spa_auth");
-                localStorage.removeItem("payroll_spa_admin_auth");
+                localStorage.removeItem("bizmates_auth");
+                localStorage.removeItem("bizmates_admin_auth");
                 window.location.href = "/login";
             })
                 .catch(err => {

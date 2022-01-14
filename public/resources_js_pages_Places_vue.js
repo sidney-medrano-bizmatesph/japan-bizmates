@@ -24,10 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! aos */ "./node_modules/aos/dist/aos.js");
 /* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aos__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
-/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_splidejs_splide__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _functions_validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/validator */ "./resources/js/functions/validator.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions */ "./resources/js/functions/index.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions */ "./resources/js/functions/index.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -165,8 +162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
-
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -188,18 +184,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: {
+    /**
+     * Fetch places and weather based on router params and query
+     * @param {Object=} [route] vue-router object
+     */
     mounting: function mounting() {
       var _this = this;
 
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       aos__WEBPACK_IMPORTED_MODULE_0___default().init();
 
-      if (route == "") {
+      if (route == {}) {
         route = this.$route;
       }
 
       var place;
-      var predefined_places = ["tokyo", "yokohama", "kyoto", "osaka", "sapporo", "nagoya"];
 
       if (route.params.place != "") {
         place = route.params.place;
@@ -207,6 +206,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.place = place.toUpperCase();
       var lowercase_place = place.toLowerCase();
+      var predefined_places = ["tokyo", "yokohama", "kyoto", "osaka", "sapporo", "nagoya"];
+      /**
+       * Redirects to home if the place param is not
+       * in the predefined places
+       */
 
       if (predefined_places.includes(lowercase_place)) {
         this.bg = lowercase_place;
@@ -220,7 +224,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.places = res.data.results;
           _this.count = res.data.results.length;
         })["catch"](function (err) {
-          (0,_functions__WEBPACK_IMPORTED_MODULE_3__.commonCatchBlock)(_this, err);
+          (0,_functions__WEBPACK_IMPORTED_MODULE_1__.commonCatchBlock)(_this, err);
         });
         this.loading_weather = true;
         axios.post("/get-weather", {
@@ -243,189 +247,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.mounting(newValue);
   })
 });
-
-/***/ }),
-
-/***/ "./resources/js/functions/validator.js":
-/*!*********************************************!*\
-  !*** ./resources/js/functions/validator.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "validate": () => (/* binding */ validate),
-/* harmony export */   "myValidator": () => (/* binding */ myValidator),
-/* harmony export */   "validateAll": () => (/* binding */ validateAll)
-/* harmony export */ });
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./resources/js/functions/index.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var validate = function validate(field, value, that) {
-  var hasError = false;
-
-  if (field.validation == undefined) {
-    return true;
-  }
-
-  field.validation.every(function (validate) {
-    var paramIndex = validate.indexOf(":");
-    var validateString = validate;
-    var localValue = value; // if (field.type == "react-draft") {
-    //     localValue =
-    //         draftToHtml(convertToRaw(value.getCurrentContent())).trim() ==
-    //         "<p></p>"
-    //             ? ""
-    //             : draftToHtml(convertToRaw(value.getCurrentContent()))
-    //                   .trim()
-    //                   .replace(/(<([^>]+)>)/gi, "");
-    // }
-
-    if (paramIndex >= 0) {
-      validateString = validate.substring(0, paramIndex);
-      var parameter = validate.substring(paramIndex + 1);
-    }
-
-    switch (validateString) {
-      case "required":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: (0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(localValue),
-            errorText: field.messages ? field.messages.required ? field.messages.required : field.labelText + " is required." : field.labelText + " is required."
-          }], that);
-          break;
-        }
-
-      case "max":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue > parseInt(parameter),
-            errorText: field.messages ? field.messages.max ? field.messages.max : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "min":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue < parseInt(parameter),
-            errorText: field.messages ? field.messages.min ? field.messages.min : field.labelText + " should not be lesser than " + parameter + "." : field.labelText + " should not be lesser than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "max_len":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue.length > parseInt(parameter),
-            errorText: field.messages ? field.messages.max_len ? field.messages.max_len : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "min_len":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue.length < parseInt(parameter),
-            errorText: field.messages ? field.messages.min_len ? field.messages.min_len : field.labelText + " should not be less than " + parameter + "." : field.labelText + " should not be less than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "number":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: isNaN(localValue),
-            errorText: field.messages && field.messages.min_len ? field.messages.min_len : field.labelText + " should all be a number."
-          }], that);
-          break;
-        }
-
-      case "s_equal":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: that[field.name] != that[parameter],
-            errorText: field.messages && field.messages.s_equal ? field.messages.s_equal : field.labelText + " should be equal to ".concat(that.fieldsValidation[parameter].labelText, ".")
-          }], that);
-          break;
-        }
-
-      case "email":
-        {
-          var re = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
-          hasError = myValidator(field.name, [{
-            errorTrap: !re.test(that[field.name]),
-            errorText: field.messages && field.messages.email ? field.messages.email : field.labelText + " must be a valid email."
-          }], that);
-          break;
-        }
-
-      case "success":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: false,
-            errorText: ""
-          }], that);
-          break;
-        }
-    }
-
-    if (hasError) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-  return hasError;
-};
-var myValidator = function myValidator(name, conditions, that) {
-  var state = {};
-  conditions.forEach(function (condition) {
-    if (condition.errorTrap) {
-      state = {
-        error: _defineProperty({}, name, condition.errorText)
-      };
-    }
-  });
-
-  if (!(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state)) {
-    var successes = that.successes;
-    delete successes[name];
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread(_objectSpread({}, that.errors), state.error));
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread({}, successes));
-  } else {
-    var errors = that.errors;
-    delete errors[name];
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread({}, errors));
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread(_objectSpread({}, that.successes), {}, _defineProperty({}, name, true)));
-  }
-
-  return !(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state);
-};
-var validateAll = function validateAll(fields, that) {
-  var values = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var errors = [];
-  var additionalValidation = that.additionalValidation;
-
-  if ((0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(additionalValidation)) {
-    additionalValidation = {};
-  }
-
-  Object.keys(fields).map(function (fieldName) {
-    if (fields[fieldName].validation != undefined && validate(additionalValidation[fieldName] ? _objectSpread(_objectSpread({}, fields[fieldName]), {}, {
-      validation: additionalValidation[fieldName]
-    }) : fields[fieldName], values[fieldName] != undefined ? values[fieldName] : that[fieldName], that)) errors.push(true);
-  });
-  return errors;
-};
 
 /***/ }),
 
@@ -545,7 +366,7 @@ var render = function() {
                         "http://openweathermap.org/img/wn/" +
                         _vm.weather.icon +
                         "@2x.png",
-                      alt: ""
+                      alt: _vm.weather.description.toUpperCase() + " icon."
                     }
                   }),
                   _vm._v(" "),
@@ -622,7 +443,8 @@ var render = function() {
                             ? place.photos[0].prefix +
                               "500x500" +
                               place.photos[0].suffix
-                            : "/images/placeholder.png"
+                            : "/images/placeholder.png",
+                        alt: place.name + " sample photo."
                       }
                     })
                   ]),

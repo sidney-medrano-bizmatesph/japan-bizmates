@@ -1,5 +1,9 @@
 <template>
-    <form @submit.prevent="submitSearch" class="flex flex-wrap">
+    <form
+        @submit.prevent="submitSearch"
+        class="flex flex-wrap"
+        data-aos="fade-up"
+    >
         <CustomInput
             :inputData="{
                 field: fields.looking_for,
@@ -54,6 +58,10 @@
 import { isEmpty } from "../functions";
 import { validateAll } from "../functions/validator";
 
+/**
+ * Fields for CustomInput containing properties for each input
+ * @type {Object.<string, Object>}
+ */
 const fields = {
     looking_for: {
         name: "looking_for",
@@ -89,6 +97,7 @@ const fields = {
         wrapperClass: "mr-4",
     },
 };
+
 export default {
     mounted() {
         this.mounting();
@@ -105,8 +114,12 @@ export default {
         };
     },
     methods: {
-        mounting(route = "") {
-            if (route == "") {
+        /**
+         * To assign values
+         * @param {Object=} [route] vue-router object
+         */
+        mounting(route = {}) {
+            if (route == {}) {
                 route = this.$route;
             }
             this.looking_for = route.query.query_string
@@ -115,6 +128,9 @@ export default {
             this.radius = route.query.radius ? route.query.radius : 2000;
             this.place = route.params.place ? route.params.place : "";
         },
+        /**
+         * Redirects to page if the required fields are filled
+         */
         submitSearch() {
             if (isEmpty(validateAll(fields, this))) {
                 this.$router.push({

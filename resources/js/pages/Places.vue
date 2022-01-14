@@ -16,7 +16,7 @@
                     <div class="flex">
                         <img
                             :src="`http://openweathermap.org/img/wn/${weather.icon}@2x.png`"
-                            alt=""
+                            :alt="`${weather.description.toUpperCase()} icon.`"
                         />
                         <p class="self-center font-bold">
                             {{ weather.description.toUpperCase() }}
@@ -70,6 +70,7 @@
                                     ? `${place.photos[0].prefix}500x500${place.photos[0].suffix}`
                                     : '/images/placeholder.png'
                             "
+                            :alt="`${place.name} sample photo.`"
                             class="rounded-xl w-full h-auto"
                         />
                     </div>
@@ -135,8 +136,6 @@
 
 <script>
 import AOS from "aos";
-import Splide from "@splidejs/splide";
-import { validateAll } from "../functions/validator";
 import { commonCatchBlock, loader } from "../functions";
 export default {
     mounted() {
@@ -157,20 +156,18 @@ export default {
         };
     },
     methods: {
-        mounting(route = "") {
+        /**
+         * Fetch places and weather based on router params and query
+         * @param {Object=} [route] vue-router object
+         */
+        mounting(route = {}) {
             AOS.init();
-            if (route == "") {
+
+            if (route == {}) {
                 route = this.$route;
             }
+
             let place;
-            let predefined_places = [
-                "tokyo",
-                "yokohama",
-                "kyoto",
-                "osaka",
-                "sapporo",
-                "nagoya",
-            ];
             if (route.params.place != "") {
                 place = route.params.place;
             }
@@ -179,6 +176,18 @@ export default {
 
             let lowercase_place = place.toLowerCase();
 
+            let predefined_places = [
+                "tokyo",
+                "yokohama",
+                "kyoto",
+                "osaka",
+                "sapporo",
+                "nagoya",
+            ];
+            /**
+             * Redirects to home if the place param is not
+             * in the predefined places
+             */
             if (predefined_places.includes(lowercase_place)) {
                 this.bg = lowercase_place;
                 this.loading = true;

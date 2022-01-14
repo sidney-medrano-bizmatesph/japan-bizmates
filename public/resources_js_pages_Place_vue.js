@@ -271,6 +271,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    /**
+     * get place details, photos and tips
+     */
     axios.post("/get-place", {
       fsq_id: this.$route.params.fsq_id
     }).then(function (res) {
@@ -473,7 +476,7 @@ var render = function() {
                         _c("img", {
                           attrs: {
                             src: photo.prefix + "300x300" + photo.suffix,
-                            alt: ""
+                            alt: "Photo of " + _vm.place.name + "."
                           }
                         })
                       ]

@@ -67,7 +67,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
+
+/**
+ * Fields for CustomInput containing properties for each input
+ * @type {Object.<string, Object>}
+ */
 
 var fields = {
   looking_for: _defineProperty({
@@ -117,10 +126,14 @@ var fields = {
     };
   },
   methods: {
+    /**
+     * To assign values
+     * @param {Object=} [route] vue-router object
+     */
     mounting: function mounting() {
-      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+      var route = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      if (route == "") {
+      if (route == {}) {
         route = this.$route;
       }
 
@@ -128,6 +141,10 @@ var fields = {
       this.radius = route.query.radius ? route.query.radius : 2000;
       this.place = route.params.place ? route.params.place : "";
     },
+
+    /**
+     * Redirects to page if the required fields are filled
+     */
     submitSearch: function submitSearch() {
       if ((0,_functions__WEBPACK_IMPORTED_MODULE_0__.isEmpty)((0,_functions_validator__WEBPACK_IMPORTED_MODULE_1__.validateAll)(fields, this))) {
         this.$router.push({
@@ -149,6 +166,189 @@ var fields = {
     this.mounting(newValue);
   })
 });
+
+/***/ }),
+
+/***/ "./resources/js/functions/validator.js":
+/*!*********************************************!*\
+  !*** ./resources/js/functions/validator.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "validate": () => (/* binding */ validate),
+/* harmony export */   "myValidator": () => (/* binding */ myValidator),
+/* harmony export */   "validateAll": () => (/* binding */ validateAll)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./resources/js/functions/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var validate = function validate(field, value, that) {
+  var hasError = false;
+
+  if (field.validation == undefined) {
+    return true;
+  }
+
+  field.validation.every(function (validate) {
+    var paramIndex = validate.indexOf(":");
+    var validateString = validate;
+    var localValue = value; // if (field.type == "react-draft") {
+    //     localValue =
+    //         draftToHtml(convertToRaw(value.getCurrentContent())).trim() ==
+    //         "<p></p>"
+    //             ? ""
+    //             : draftToHtml(convertToRaw(value.getCurrentContent()))
+    //                   .trim()
+    //                   .replace(/(<([^>]+)>)/gi, "");
+    // }
+
+    if (paramIndex >= 0) {
+      validateString = validate.substring(0, paramIndex);
+      var parameter = validate.substring(paramIndex + 1);
+    }
+
+    switch (validateString) {
+      case "required":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: (0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(localValue),
+            errorText: field.messages ? field.messages.required ? field.messages.required : field.labelText + " is required." : field.labelText + " is required."
+          }], that);
+          break;
+        }
+
+      case "max":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue > parseInt(parameter),
+            errorText: field.messages ? field.messages.max ? field.messages.max : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "min":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue < parseInt(parameter),
+            errorText: field.messages ? field.messages.min ? field.messages.min : field.labelText + " should not be lesser than " + parameter + "." : field.labelText + " should not be lesser than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "max_len":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue.length > parseInt(parameter),
+            errorText: field.messages ? field.messages.max_len ? field.messages.max_len : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "min_len":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: localValue.length < parseInt(parameter),
+            errorText: field.messages ? field.messages.min_len ? field.messages.min_len : field.labelText + " should not be less than " + parameter + "." : field.labelText + " should not be less than " + parameter + "."
+          }], that);
+          break;
+        }
+
+      case "number":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: isNaN(localValue),
+            errorText: field.messages && field.messages.min_len ? field.messages.min_len : field.labelText + " should all be a number."
+          }], that);
+          break;
+        }
+
+      case "s_equal":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: that[field.name] != that[parameter],
+            errorText: field.messages && field.messages.s_equal ? field.messages.s_equal : field.labelText + " should be equal to ".concat(that.fieldsValidation[parameter].labelText, ".")
+          }], that);
+          break;
+        }
+
+      case "email":
+        {
+          var re = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
+          hasError = myValidator(field.name, [{
+            errorTrap: !re.test(that[field.name]),
+            errorText: field.messages && field.messages.email ? field.messages.email : field.labelText + " must be a valid email."
+          }], that);
+          break;
+        }
+
+      case "success":
+        {
+          hasError = myValidator(field.name, [{
+            errorTrap: false,
+            errorText: ""
+          }], that);
+          break;
+        }
+    }
+
+    if (hasError) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  return hasError;
+};
+var myValidator = function myValidator(name, conditions, that) {
+  var state = {};
+  conditions.forEach(function (condition) {
+    if (condition.errorTrap) {
+      state = {
+        error: _defineProperty({}, name, condition.errorText)
+      };
+    }
+  });
+
+  if (!(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state)) {
+    var successes = that.successes;
+    delete successes[name];
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread(_objectSpread({}, that.errors), state.error));
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread({}, successes));
+  } else {
+    var errors = that.errors;
+    delete errors[name];
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread({}, errors));
+    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread(_objectSpread({}, that.successes), {}, _defineProperty({}, name, true)));
+  }
+
+  return !(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state);
+};
+var validateAll = function validateAll(fields, that) {
+  var values = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var errors = [];
+  var additionalValidation = that.additionalValidation;
+
+  if ((0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(additionalValidation)) {
+    additionalValidation = {};
+  }
+
+  Object.keys(fields).map(function (fieldName) {
+    if (fields[fieldName].validation != undefined && validate(additionalValidation[fieldName] ? _objectSpread(_objectSpread({}, fields[fieldName]), {}, {
+      validation: additionalValidation[fieldName]
+    }) : fields[fieldName], values[fieldName] != undefined ? values[fieldName] : that[fieldName], that)) errors.push(true);
+  });
+  return errors;
+};
 
 /***/ }),
 
@@ -244,6 +444,7 @@ var render = function() {
     "form",
     {
       staticClass: "flex flex-wrap",
+      attrs: { "data-aos": "fade-up" },
       on: {
         submit: function($event) {
           $event.preventDefault()

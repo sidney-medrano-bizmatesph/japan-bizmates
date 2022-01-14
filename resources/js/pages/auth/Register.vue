@@ -4,7 +4,8 @@
             flex
             items-center
             justify-center
-            min-md:w-2/3 min-xl:w-1/2
+            min-md:w-2/3
+            min-xl:w-1/2
             w-full
             px-6
             m-auto
@@ -85,11 +86,11 @@ export default {
                 .post("/login", { username, password })
                 .then((res) => {
                     const { token, user } = res.data;
-                    localStorage.setItem("payroll_spa_auth", res.data.token);
+                    localStorage.setItem("bizmates_auth", res.data.token);
 
                     if (user.acc_type == 0) {
                         localStorage.setItem(
-                            "payroll_spa_admin_auth",
+                            "bizmates_admin_auth",
                             res.data.token
                         );
                     }

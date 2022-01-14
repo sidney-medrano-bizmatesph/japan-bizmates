@@ -58,25 +58,69 @@
 
 @layer components {
 
-    a, a:hover, a:focus, a:active {
+    
+    /* Link */
+
+
+    a, 
+    a:hover, 
+    a:focus, 
+    a:active {
         text-decoration: none;
         color: inherit;
-   }
+    }
 
-   .link{
+
+   .link {
        @apply text-blue-500 hover:underline cursor-pointer;
-   }
+    }
 
-    textarea, input { outline: none; 
-                    -webkit-appearance: none;
-                    border-style: solid;
-                }
-    input:focus, textarea:focus, select:focus{
+
+    .router-link-exact-active>span {
+        background-color: rgb(0, 47, 255);
+        color: white !important;
+    }
+    
+    
+    .router-link-active>span {
+        background-color: rgb(0, 47, 255);
+        color: white !important;
+    }
+
+
+    /* Input */
+
+
+    .input {
+        @apply w-full;
+    }
+
+
+    textarea, 
+    input { 
+        outline: none; 
+        -webkit-appearance: none;
+        border-style: solid;
+    }
+
+
+    input:focus, 
+    textarea:focus, 
+    select:focus {
         outline: none;
         -webkit-appearance: none;
         border-style: solid;
-
     }
+
+
+    .height-37px {
+        height: 37px !important;
+    }
+
+
+    /* Buttons */
+
+
     .btn-own {
         background: none;
         color: inherit;
@@ -87,58 +131,85 @@
         outline: inherit;
         @apply border rounded-md px-4 py-2 my-2 mr-2 transition duration-300 ease-in-out select-none focus:outline-none focus:shadow focus:ring-blue-200 focus:ring-4;
     }
+
+
     .btn-own:disabled {
         @apply btn-disabled;
     }
+
+
     .btn-own .btn-sm {
         @apply text-xs px-3 py-2 font-medium;
     }
+
+
     .btn-own .btn-primary {
         @apply border-indigo-500 bg-indigo-500 hover:bg-indigo-600 text-white;
     }
+
+
     .btn-own .btn-success {
         @apply border-green-500 bg-green-500 hover:bg-green-600 text-white;
     }
+
+
     .btn-own .btn-danger {
         @apply border-red-500 hover:bg-red-600 text-white;
         background-color: #6a181c;
     }
+
+
     .btn-own .btn-warning {
         @apply border-yellow-500 bg-yellow-500 hover:bg-yellow-600 text-white;
     }
+
+
     .btn-own .btn-info {
         @apply border-green-700 bg-green-700 hover:bg-green-800 text-white;
     }
+
+
     .btn-own .btn-dark {
         @apply border-gray-700 bg-gray-700 hover:bg-gray-800 text-white;
     }
+
+
     .btn-own .btn-light {
         @apply border-gray-200 bg-gray-200 text-gray-700 hover:bg-gray-300;
     }
+
+
     .btn-own .btn-transparent {
         @apply border-transparent bg-transparent text-gray-900 hover:bg-gray-300;
     }
+
+
     .btn-own .btn-disabled {
         @apply opacity-50 cursor-not-allowed;
     }
 
-    .input {
-        @apply w-full;
+
+    .filter-button {
+        @apply my-0;
+        padding-top: 5.5px;
+        padding-bottom: 5.5px;
     }
 
-    .section {
-        @apply min-xl:px-16 px-6;
-    }
-    /* lg:px-6 px-16 */ 
+
+    /* Navigation */
+
+
     .nav-bar {
         @apply flex fixed w-full items-center min-xl:px-16 px-6 justify-between  h-16 bg-blue-500 text-white z-10 ease-in-out transition-all duration-300 bg-opacity-75;
         z-index: 999;
     }
 
+
     .side-nav-link {
         @apply flex flex-wrap items-center p-4 hover:bg-blue-900 hover:text-yellow-200 transition-all;
     }
     
+
     .nav-title {
         word-break: break-word;
     }
@@ -146,65 +217,89 @@
     .nav-link{ 
         @apply flex items-center p-3 font-medium text-center bg-transparent rounded-full text-white hover:text-yellow-200 focus:outline-none focus:text-yellow-200 hover:bg-gray-200 hover:bg-opacity-25 transition-all
     }
-    .order-link {
-        @apply text-blue-500
-    }
     
     
+    /* select2 */
+
+
     .select2-results__option.select2-results__option--highlighted {
         @apply bg-blue-500 !important;
     }
+
+
     .select2-dropdown {
         @apply border-blue-200 border-2 ring-blue-100 ring-1 rounded transition duration-300 ease-in-out !important;
         margin-top: 1px !important;
     }
+
+
     .select2-results__option[aria-selected="true"] {
         @apply bg-blue-600 text-white !important;
-
     }
+
+
     .select2-results__option {
         @apply rounded;
     }
+
+
     .select2-selection {
         @apply mr-4;
     }
 
 
+    /* page content */
+
+
+    body * {
+        @apply box-border ;
+        font-family: "Proxima Nova";
+    }
+
 
     .page-content {
         @apply ease-in-out transition-all duration-300 bg-gray-100;
         min-height: 100vh;      
-        /* padding-top: 64px */
+    }
+
+
+    .section {
+        @apply min-xl:px-16 px-6;
     }
     
+
+    /* Table */
+
+
     .table-own {
         @apply border-collapse w-full;
     }
+
 
     .table-own tr {
         @apply rounded-lg text-sm font-medium text-gray-700 text-left;
         font-size: 0.9674rem;
     }
 
+
     .table-own th {
         @apply px-4 py-2;
         background-color: #f8f8f8;
     }
 
+
     .table-own td {
         @apply px-4 py-4;
     }
+
+
+    .order-link {
+        @apply text-blue-500
+    }
 }
 
-body * {
-    @apply box-border ;
-    font-family: "Proxima Nova";
 
-}
-
-/* body {
-    @apply bg-gray-100;
-} */
+/* Fade animation */
 
 
 .fade-enter-active,
@@ -212,31 +307,25 @@ body * {
     transition: opacity 0.3s;
 }
 
-.fade-enter,
-.fade-leave-to
-/* .fade-leave-active below version 2.1.8 */
 
-{
+.fade-enter,
+.fade-leave-to {
     opacity: 0;
 }
 
 
-.height-37px {
-    height: 37px !important;
-}
+/* Loading animation */
 
-.filter-button {
-    @apply my-0;
-    padding-top: 5.5px;
-    padding-bottom: 5.5px;
-}
+
 .lds-ring {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
-  }
-  .lds-ring div {
+}
+
+
+.lds-ring div {
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -247,31 +336,32 @@ body * {
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: rgba(59, 130, 246, 1) transparent transparent transparent;
-  }
-  .lds-ring div:nth-child(1) {
-    animation-delay: -0.45s;
-  }
-  .lds-ring div:nth-child(2) {
-    animation-delay: -0.3s;
-  }
-  .lds-ring div:nth-child(3) {
-    animation-delay: -0.15s;
-  }
-  @keyframes lds-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-.router-link-exact-active>span {
-    background-color: rgb(0, 47, 255);
-    color: white !important;
 }
 
-.router-link-active>span {
-    background-color: rgb(0, 47, 255);
-    color: white !important;
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
 }
+
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+

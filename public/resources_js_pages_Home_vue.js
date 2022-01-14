@@ -24,10 +24,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! aos */ "./node_modules/aos/dist/aos.js");
 /* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aos__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
-/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_splidejs_splide__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _functions_validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/validator */ "./resources/js/functions/validator.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions */ "./resources/js/functions/index.js");
 //
 //
 //
@@ -384,9 +380,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
@@ -401,189 +401,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/functions/validator.js":
-/*!*********************************************!*\
-  !*** ./resources/js/functions/validator.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "validate": () => (/* binding */ validate),
-/* harmony export */   "myValidator": () => (/* binding */ myValidator),
-/* harmony export */   "validateAll": () => (/* binding */ validateAll)
-/* harmony export */ });
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./resources/js/functions/index.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var validate = function validate(field, value, that) {
-  var hasError = false;
-
-  if (field.validation == undefined) {
-    return true;
-  }
-
-  field.validation.every(function (validate) {
-    var paramIndex = validate.indexOf(":");
-    var validateString = validate;
-    var localValue = value; // if (field.type == "react-draft") {
-    //     localValue =
-    //         draftToHtml(convertToRaw(value.getCurrentContent())).trim() ==
-    //         "<p></p>"
-    //             ? ""
-    //             : draftToHtml(convertToRaw(value.getCurrentContent()))
-    //                   .trim()
-    //                   .replace(/(<([^>]+)>)/gi, "");
-    // }
-
-    if (paramIndex >= 0) {
-      validateString = validate.substring(0, paramIndex);
-      var parameter = validate.substring(paramIndex + 1);
-    }
-
-    switch (validateString) {
-      case "required":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: (0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(localValue),
-            errorText: field.messages ? field.messages.required ? field.messages.required : field.labelText + " is required." : field.labelText + " is required."
-          }], that);
-          break;
-        }
-
-      case "max":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue > parseInt(parameter),
-            errorText: field.messages ? field.messages.max ? field.messages.max : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "min":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue < parseInt(parameter),
-            errorText: field.messages ? field.messages.min ? field.messages.min : field.labelText + " should not be lesser than " + parameter + "." : field.labelText + " should not be lesser than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "max_len":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue.length > parseInt(parameter),
-            errorText: field.messages ? field.messages.max_len ? field.messages.max_len : field.labelText + " should not be greater than " + parameter + "." : field.labelText + " should not be greater than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "min_len":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: localValue.length < parseInt(parameter),
-            errorText: field.messages ? field.messages.min_len ? field.messages.min_len : field.labelText + " should not be less than " + parameter + "." : field.labelText + " should not be less than " + parameter + "."
-          }], that);
-          break;
-        }
-
-      case "number":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: isNaN(localValue),
-            errorText: field.messages && field.messages.min_len ? field.messages.min_len : field.labelText + " should all be a number."
-          }], that);
-          break;
-        }
-
-      case "s_equal":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: that[field.name] != that[parameter],
-            errorText: field.messages && field.messages.s_equal ? field.messages.s_equal : field.labelText + " should be equal to ".concat(that.fieldsValidation[parameter].labelText, ".")
-          }], that);
-          break;
-        }
-
-      case "email":
-        {
-          var re = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
-          hasError = myValidator(field.name, [{
-            errorTrap: !re.test(that[field.name]),
-            errorText: field.messages && field.messages.email ? field.messages.email : field.labelText + " must be a valid email."
-          }], that);
-          break;
-        }
-
-      case "success":
-        {
-          hasError = myValidator(field.name, [{
-            errorTrap: false,
-            errorText: ""
-          }], that);
-          break;
-        }
-    }
-
-    if (hasError) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-  return hasError;
-};
-var myValidator = function myValidator(name, conditions, that) {
-  var state = {};
-  conditions.forEach(function (condition) {
-    if (condition.errorTrap) {
-      state = {
-        error: _defineProperty({}, name, condition.errorText)
-      };
-    }
-  });
-
-  if (!(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state)) {
-    var successes = that.successes;
-    delete successes[name];
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread(_objectSpread({}, that.errors), state.error));
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread({}, successes));
-  } else {
-    var errors = that.errors;
-    delete errors[name];
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "errors", _objectSpread({}, errors));
-    vue__WEBPACK_IMPORTED_MODULE_1__.default.set(that, "successes", _objectSpread(_objectSpread({}, that.successes), {}, _defineProperty({}, name, true)));
-  }
-
-  return !(0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(state);
-};
-var validateAll = function validateAll(fields, that) {
-  var values = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var errors = [];
-  var additionalValidation = that.additionalValidation;
-
-  if ((0,_index__WEBPACK_IMPORTED_MODULE_0__.isEmpty)(additionalValidation)) {
-    additionalValidation = {};
-  }
-
-  Object.keys(fields).map(function (fieldName) {
-    if (fields[fieldName].validation != undefined && validate(additionalValidation[fieldName] ? _objectSpread(_objectSpread({}, fields[fieldName]), {}, {
-      validation: additionalValidation[fieldName]
-    }) : fields[fieldName], values[fieldName] != undefined ? values[fieldName] : that[fieldName], that)) errors.push(true);
-  });
-  return errors;
-};
-
-/***/ }),
-
 /***/ "./resources/js/pages/Home.vue":
 /*!*************************************!*\
   !*** ./resources/js/pages/Home.vue ***!
@@ -595,7 +412,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Home_vue_vue_type_template_id_b3c5cf30_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=b3c5cf30&scoped=true& */ "./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&scoped=true&");
+/* harmony import */ var _Home_vue_vue_type_template_id_b3c5cf30___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=b3c5cf30& */ "./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&");
 /* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/pages/Home.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -607,11 +424,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
   _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Home_vue_vue_type_template_id_b3c5cf30_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Home_vue_vue_type_template_id_b3c5cf30_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Home_vue_vue_type_template_id_b3c5cf30___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Home_vue_vue_type_template_id_b3c5cf30___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "b3c5cf30",
+  null,
   null
   
 )
@@ -639,27 +456,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&scoped=true&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&scoped=true& ***!
-  \********************************************************************************/
+/***/ "./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&":
+/*!********************************************************************!*\
+  !*** ./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30& ***!
+  \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_b3c5cf30_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_b3c5cf30_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_b3c5cf30___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_b3c5cf30___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_b3c5cf30_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=template&id=b3c5cf30&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_b3c5cf30___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=template&id=b3c5cf30& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=template&id=b3c5cf30& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -723,7 +540,10 @@ var render = function() {
                         _c("img", {
                           staticClass:
                             "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
-                          attrs: { src: "/images/tokyo.jpg" }
+                          attrs: {
+                            src: "/images/tokyo.jpg",
+                            alt: "Sample photo of Tokyo"
+                          }
                         })
                       ]
                     ),
@@ -768,7 +588,10 @@ var render = function() {
                         _c("img", {
                           staticClass:
                             "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
-                          attrs: { src: "/images/yokohama.jpg" }
+                          attrs: {
+                            src: "/images/yokohama.jpg",
+                            alt: "Sample photo of Yokohama"
+                          }
                         })
                       ]
                     ),
@@ -813,7 +636,10 @@ var render = function() {
                         _c("img", {
                           staticClass:
                             "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
-                          attrs: { src: "/images/kyoto.jpg" }
+                          attrs: {
+                            src: "/images/kyoto.jpg",
+                            alt: "Sample photo of Kyoto"
+                          }
                         })
                       ]
                     ),
@@ -858,7 +684,10 @@ var render = function() {
                         _c("img", {
                           staticClass:
                             "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
-                          attrs: { src: "/images/osaka.jpg" }
+                          attrs: {
+                            src: "/images/osaka.jpg",
+                            alt: "Sample photo of Osaka."
+                          }
                         })
                       ]
                     ),
@@ -903,7 +732,10 @@ var render = function() {
                         _c("img", {
                           staticClass:
                             "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
-                          attrs: { src: "/images/sapporo.jpg" }
+                          attrs: {
+                            src: "/images/sapporo.jpg",
+                            alt: "Sample photo of Sapporo."
+                          }
                         })
                       ]
                     ),
@@ -948,7 +780,10 @@ var render = function() {
                         _c("img", {
                           staticClass:
                             "\n                                    rounded-xl\n                                    object-cover\n                                    max-auto max-h-44\n                                ",
-                          attrs: { src: "/images/nagoya.jpg" }
+                          attrs: {
+                            src: "/images/nagoya.jpg",
+                            alt: "Sample photo of Nagoya."
+                          }
                         })
                       ]
                     ),
@@ -1000,7 +835,7 @@ var staticRenderFns = [
               _c("img", {
                 staticClass:
                   "\n                        rounded-lg\n                        shadow-xl\n                        max-h-44\n                        lg:max-h-32\n                        w-auto\n                        h-auto\n                    ",
-                attrs: { src: "/images/flag.png" }
+                attrs: { src: "/images/flag.png", alt: "Flag of Japan" }
               })
             ]),
             _vm._v(" "),

@@ -64,7 +64,7 @@
                             >
                                 <img
                                     :src="`${photo.prefix}300x300${photo.suffix}`"
-                                    alt=""
+                                    :alt="`Photo of ${place.name}.`"
                                 />
                             </a>
                         </div>
@@ -254,6 +254,9 @@ export default {
         };
     },
     mounted() {
+        /**
+         * get place details, photos and tips
+         */
         axios
             .post("/get-place", { fsq_id: this.$route.params.fsq_id })
             .then((res) => {

@@ -1,9 +1,5 @@
 import routes from "../routes";
-import jwt_decode from "jwt-decode";
-// import {store} from "../layouts/Main";
 import Vue from "vue";
-
-
 
 export const defaultInit = {
     height: 200,
@@ -14,8 +10,6 @@ export const defaultInit = {
     ],
     toolbar:
         'undo redo | formatselect | bold italic underline strikethrough forecolor backcolor casechange | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | preview | help',
-
-
 }
 
 export const isEmpty = value =>
@@ -74,22 +68,10 @@ export const logoutIfTokenExpired = err => {
                 window.location.href = "/home";
             })
         }
-        // setTimeout(function() {
-        //     localStorage.removeItem("payroll_spa_auth");
-        //     window.location.href = "/login";
-        // }, 3000);
     }
 };
 
 export const toast = (status = "success", message) => {
-    // Vue.$toast.open({
-    //     message: message,
-    //     type: status,
-    //     dismissible: true,
-    //     duration: 3000,
-    //     position: "top-right"
-    // });
-
     toastr[status](message)
 };
 
